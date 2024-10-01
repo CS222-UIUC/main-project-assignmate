@@ -7,16 +7,13 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <a href={`/login`} style={{ color: '#3182CE' }}>
+            Login
+          </a> or{' '}
+          <a href={'/signup'} style={{ color: '#3182CE' }}>
+            signup
+          </a> to Assignmate
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
