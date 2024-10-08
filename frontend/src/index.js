@@ -10,6 +10,7 @@ import {
 import Login from './auth/Login';
 import Signup from './auth/Signup';
 import { ChakraProvider } from '@chakra-ui/react'
+import ProtectedRoute from './utils/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <App/>
+    element: <ProtectedRoute element={<App />} />
   }
 ]);
 
