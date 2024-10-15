@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     'social_django',
     'app1',
+    'canvas',
 
     'allauth',
     'allauth.account',
@@ -178,6 +179,10 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+CANVAS_CLIENT_ID = "[CANVAS_CLIENT_ID]" # Replace with actual client id once we get developer key
+CANVAS_CLIENT_SECRET = "[CANVAS_CLIENT_SECRET]" # Replace with actual client secret once we get developer key
+CANVAS_REDIRECT_URI = "[CANVAS_REDIRECT_URI]" # Replace with actual redirect uri once we get developer key
 # Redirect URL after successful login
 LOGIN_URL = '/login/'
 #LOGIN_REDIRECT_URL = 'http://localhost:8000/oauth/complete/google-oauth2/'
