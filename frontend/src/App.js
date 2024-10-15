@@ -1,21 +1,24 @@
+import { Link, Text, Box, Image, Heading, Flex } from '@chakra-ui/react';
 import logo from './logo.svg';
-import './App.css';
+import { generalStyles } from './theme/components';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          <a href={`/login`} style={{ color: '#3182CE' }}>
+    <Flex {...generalStyles.container}>
+      <Box as="header" textAlign="center" p={4}>
+        <Image src={logo} className="App-logo" alt="logo" boxSize="100px" mx="auto" />
+        <Heading as="p" size="md" mt={4}>
+          <Link href="/login" color="blue.500">
             Login
-          </a> or{' '}
-          <a href={'/signup'} style={{ color: '#3182CE' }}>
+          </Link>{' '}
+          or{' '}
+          <Link href="/signup" color="blue.500">
             signup
-          </a> to Assignmate
-        </p>
-      </header>
-    </div>
+          </Link>{' '}
+          to Assignmate
+        </Heading>
+      </Box>
+    </Flex>
   );
 }
 

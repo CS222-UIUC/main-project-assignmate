@@ -1,4 +1,4 @@
-export const authStyles = {
+export const generalStyles = {
     container: {
       w: "100%",
       h: "100vh",
@@ -7,6 +7,10 @@ export const authStyles = {
       justifyContent: "center",
       bg: "gray.100",
     },
+};
+
+export const authStyles = {
+    container: generalStyles.container,
     formBox: {
       p: 8,
       maxWidth: "400px",

@@ -12,7 +12,7 @@ const Login = () => {
         // Handle signup logic here
         toast({
             title: 'Account created.',
-            description: "You've successfully created an account.",
+            description: "You've successfully logged in.",
             status: 'success',
             duration: 5000,
             isClosable: true,
