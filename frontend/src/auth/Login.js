@@ -1,34 +1,27 @@
 import React, { useState } from 'react';
-import { Box, Button, FormControl, FormLabel, Input, Heading, VStack } from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Input, Heading, VStack, useToast } from '@chakra-ui/react';
+import { authStyles } from '../theme/components';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const toast = useToast();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle login logic here
-        console.log('Email:', email);
-        console.log('Password:', password);
+        // Handle signup logic here
+        toast({
+            title: 'Account created.',
+            description: "You've successfully created an account.",
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+        });
     };
 
     return (
-        <Box
-            w="100%"
-            h="100vh"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            bg="gray.100"
-        >
-            <Box
-                p={8}
-                maxWidth="400px"
-                borderWidth={1}
-                borderRadius={8}
-                boxShadow="lg"
-                bg="white"
-            >
+        <Box {...authStyles.container}>
+            <Box {...authStyles.formBox}>
                 <VStack spacing={4} align="stretch">
                     <Heading as="h1" size="lg" textAlign="center">
                         Login
@@ -50,26 +43,8 @@ const Login = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </FormControl>
-                        <Button
-                            type="submit"
-                            colorScheme="teal"
-                            size="md"
-                            width="full"
-                            mt={4}
-                        >
-                            Login
-                        </Button>
-
-                        <Button
-                            as="a"
-                            href="/signup"
-                            colorScheme="gray"
-                            size="md"
-                            width="full"
-                            mt={2}
-                        >
-                            Switch to Sign Up
-                        </Button>
+                        <Button {...authStyles.buttonLogin}>Login</Button>
+                        <Button href="/signup" {...authStyles.buttonSignup}>Switch to Sign Up</Button>
                     </form>
                 </VStack>
             </Box>
