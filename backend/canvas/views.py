@@ -6,7 +6,7 @@ from django.http import JsonResponse
 import requests
 
 CANVAS_API_URL = 'https://your_canvas_instance/api/v1' # Replace with actual URL once we get developer key
-ACCESS_TOKEN = '[ACCESS_TOKEN]' # Replace with actual token once we get developer key
+ACCESS_TOKEN = '[ACCESS_TOKEN]' # Replace with actual token once we get key
 
 headers = {
     'Authorization': f'Bearer {ACCESS_TOKEN}',

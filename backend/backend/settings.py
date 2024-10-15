@@ -180,9 +180,10 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-CANVAS_CLIENT_ID = "[CANVAS_CLIENT_ID]" # Replace with actual client id once we get developer key
-CANVAS_CLIENT_SECRET = "[CANVAS_CLIENT_SECRET]" # Replace with actual client secret once we get developer key
-CANVAS_REDIRECT_URI = "[CANVAS_REDIRECT_URI]" # Replace with actual redirect uri once we get developer key
+# following 3 are placeholders values which will be updated once canvas grants me developer key
+CANVAS_CLIENT_ID = "client_id"
+CANVAS_CLIENT_SECRET = "client_secret"
+CANVAS_REDIRECT_URI = "client_redirect_uri"
 # Redirect URL after successful login
 LOGIN_URL = '/login/'
 #LOGIN_REDIRECT_URL = 'http://localhost:8000/oauth/complete/google-oauth2/'
