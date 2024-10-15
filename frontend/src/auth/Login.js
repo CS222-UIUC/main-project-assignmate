@@ -11,7 +11,7 @@ const Login = () => {
         e.preventDefault();
         // Handle signup logic here
         toast({
-            title: 'Account created.',
+            title: 'Account authenticated.',
             description: "You've successfully logged in.",
             status: 'success',
             duration: 5000,

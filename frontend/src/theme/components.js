@@ -1,4 +1,5 @@
 export const generalStyles = {
+    /*General container component that should be the root component of all pages.*/
     container: {
       w: "100%",
       h: "100vh",
