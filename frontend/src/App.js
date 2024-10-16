@@ -2,6 +2,7 @@ import { Link, Text, Box, Image, Heading, Flex } from '@chakra-ui/react';
 import logo from './logo.svg';
 import { generalStyles } from './theme/components';
 
+
 function App() {
   return (
     <Flex {...generalStyles.container}>
