@@ -9,6 +9,7 @@ import {
     VStack,
     useToast,
 } from '@chakra-ui/react';
+import { authStyles } from '../theme/components';
 
 const Signup = () => {
     const [email, setEmail] = useState('');
@@ -39,22 +40,8 @@ const Signup = () => {
     };
 
     return (
-        <Box
-            w="100%"
-            h="100vh"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            bg="gray.100"
-        >
-            <Box
-                p={8}
-                maxWidth="400px"
-                borderWidth={1}
-                borderRadius={8}
-                boxShadow="lg"
-                bg="white"
-            >
+        <Box {...authStyles.container}>
+            <Box {...authStyles.formBox}>
                 <VStack spacing={4} align="stretch">
                     <Heading as="h1" size="lg" textAlign="center">
                         Sign Up
@@ -84,26 +71,8 @@ const Signup = () => {
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                             />
                         </FormControl>
-                        <Button
-                            type="submit"
-                            colorScheme="teal"
-                            size="md"
-                            width="full"
-                            mt={4}
-                        >
-                            Sign Up
-                        </Button>
-
-                        <Button
-                            as="a"
-                            href="/login"
-                            colorScheme="gray"
-                            size="md"
-                            width="full"
-                            mt={2}
-                        >
-                            Switch to Login
-                        </Button>
+                        <Button {...authStyles.buttonLogin}>Sign Up</Button>
+                        <Button href="/login" {...authStyles.buttonSignup}>Switch to Login</Button>
                     </form>
                 </VStack>
             </Box>
