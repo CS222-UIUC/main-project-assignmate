@@ -4,11 +4,10 @@
 name: Python application
 
 on:
-  workflow_dispatch:
-    push:
-      branches: ["main"]
-    pull_request:
-      branches: ["main"]
+  push:
+    branches: ["main", "jkim826il-ghActions"]
+  pull_request:
+    branches: ["main", "jkim826il-ghActions"]
 
 permissions:
   contents: read
