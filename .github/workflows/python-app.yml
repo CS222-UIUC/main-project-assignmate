@@ -35,3 +35,7 @@ jobs:
         run: |
           cd backend
           pytest
+      - name: Test coverage with pytest-cov
+        run: |
+          cd backend
+          pytest --cov=backend tests/
