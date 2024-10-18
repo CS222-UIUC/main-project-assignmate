@@ -1,13 +1,11 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: style checker
+name: pycodestyle
 
 on:
   push:
-    branches: ["main", "jkim826il-ghActions"]
   pull_request:
-    branches: ["main", "jkim826il-ghActions"]
 
 permissions:
   contents: read
