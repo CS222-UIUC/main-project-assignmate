@@ -31,6 +31,7 @@ jobs:
           pip install python-dotenv
           pip install social-auth-app-django
           pip install pysqlite3
+          pip install pylint
       - name: Test with pytest
         run: |
           cd backend
@@ -39,3 +40,6 @@ jobs:
         run: |
           cd backend
           pytest --cov=backend tests/
+      - name: Analysing the code with pylint
+        run: |
+          pylint $(git ls-files '*.py')
