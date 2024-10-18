@@ -20,16 +20,11 @@ jobs:
         node-version: "22.x"
     - name: Install dependencies
       run: |
-          npm install react
-          npm install react-scripts
-          npm install --save-dev jest
-          npm install --save-dev @testing-library/react @testing-library/dom
-          npm install --save-dev eslint-config-prettier
-          npm install --save @chakra-ui/react
-          npm install react-router-dom
+          cd frontend
+          npm install
     - name: Run Tests
       run: |
-          cd frontend/src
+          cd frontend
           npm run test
 
 
