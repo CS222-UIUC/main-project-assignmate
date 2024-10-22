@@ -49,6 +49,8 @@ INSTALLED_APPS = [
 
     'social_django',
     'app1',
+    'canvas',
+    'scraper',
 
     'allauth',
     'allauth.account',
