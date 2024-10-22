@@ -51,6 +51,28 @@ describe('Signup Component', () => {
     });
   });
 
+  it('shows a failure toast on unmatched password', () => {
+    const { getByPlaceholderText, getByLabelText, getByText, getByRole } = render(
+      <ChakraProvider>
+        <Signup />
+      </ChakraProvider>
+    );
+
+    fireEvent.change(getByLabelText(/email/i), { target: { value: 'test@example.com' } });
+    fireEvent.change(getByLabelText(/^Password/), { target: { value: 'password123' } });
+    fireEvent.change(getByLabelText(/confirm password/i), { target: { value: 'password12345' } });
+
+    fireEvent.click(getByRole('button', {name: 'Sign Up'}));
+
+    expect(mockToast).toHaveBeenCalledWith({
+      title: 'Error',
+      description: "Passwords do not match.",
+      status: 'error',
+      duration: 5000,
+      isClosable: true
+    });
+  });
+
   it('shows the Login button', () => {
     const { getByText } = render(
       <ChakraProvider>
