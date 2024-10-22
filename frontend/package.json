@@ -6,16 +6,16 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@react-oauth/google": "^0.12.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^29.5.13",
-    "@types/node": "^22.7.8",
-    "@types/react": "^18.2.14",    
-    "@types/react-dom": "^18.2.7",  
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.7",
     "framer-motion": "^11.9.0",
-    "react": "^18.2.0",              
-    "react-dom": "^18.2.0",         
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^6.26.2",
     "react-scripts": "5.0.1",
     "typescript": "^3.2.1",
@@ -44,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.8"
   }
 }

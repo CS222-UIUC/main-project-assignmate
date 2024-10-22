@@ -7,18 +7,14 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Login from './auth/Login.tsx';
-import Signup from './auth/Signup.tsx';
+import Dashboard from './Dashboard.tsx';
 import { ChakraProvider } from '@chakra-ui/react'
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const router = createBrowserRouter([
   {
-    path: "/login",
-    element: <Login/>,
-  },
-  {
-    path: "/signup",
-    element: <Signup/>,
+    path: "/authenticate",
+    element: <Dashboard/>,
   },
   {
     path: "/",
@@ -32,7 +28,9 @@ if (container) {
   root.render(
     <React.StrictMode>
       <ChakraProvider>
-        <RouterProvider router={router} />
+        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+          <RouterProvider router={router} />
+         </GoogleOAuthProvider>
       </ChakraProvider>
     </React.StrictMode>
   );

@@ -1,18 +1,15 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          <a href={`/login`} style={{ color: '#3182CE' }}>
-            Login
-          </a> or{' '}
-          <a href={'/signup'} style={{ color: '#3182CE' }}>
-            signup
-          </a> to Assignmate
+          Open your {' '}
+          <a href={`/authenticate`} style={{ color: '#3182CE' }}>
+            dashboard.
+          </a>
         </p>
       </header>
     </div>
