@@ -27,3 +27,6 @@ db.sqlite3
 app1/__pycache__
 app1/migrations/__pycache__
 backend/__pycache__
+scraper/__pycache__
+scraper/migrations/__pycache__
+canvas/__pycache__
