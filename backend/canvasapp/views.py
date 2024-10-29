@@ -4,7 +4,7 @@ from canvasapi.exceptions import CanvasException
 from collections import defaultdict
 
 API_URL = "https://canvas.illinois.edu/"
-API_KEY = "14559~DXTJ2Ba2Tv4vFnxmfy4mcLhcGHk7YuNJKLzLnNFnUP8Fmx4T7Ae9DCxrh8xC2eGT"
+API_KEY = "[replace with actual API KEY]"
 
 # Initialize the Canvas object
 CANVAS = Canvas(API_URL, API_KEY)
