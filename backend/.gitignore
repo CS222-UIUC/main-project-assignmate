@@ -10,3 +10,7 @@ backend\package-lock.json
 #backend
 
 backend\backend\.env
+
+backend/app1/__pycache__/
+backend/backend/__pycache__/
+backend/db.sqlite3
