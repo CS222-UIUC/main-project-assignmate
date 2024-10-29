@@ -10,6 +10,7 @@ import {
 import Login from './auth/Login.tsx';
 import Signup from './auth/Signup.tsx';
 import { ChakraProvider } from '@chakra-ui/react'
+import AssignmentsDashboard from './assignments/AssignmentsDashboard.tsx';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup/>,
+  },
+  {
+    path: "/dashboard",
+    element: <AssignmentsDashboard/>
   },
   {
     path: "/",
