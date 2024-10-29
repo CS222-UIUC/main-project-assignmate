@@ -21,11 +21,11 @@ def scrape_prairie_learn_data():
     driver.get("https://us.prairielearn.com/pl/login")
     wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "University of Illinois Urbana-Champaign (UIUC)"))).click()
     time.sleep(random.uniform(4, 6))
-    wait.until(EC.presence_of_element_located((By.NAME, "loginfmt"))).send_keys("rdlee4@illinois.edu")
+    wait.until(EC.presence_of_element_located((By.NAME, "loginfmt"))).send_keys("[email]") # replace with actual email
     time.sleep(random.uniform(2, 3))
     driver.find_element(By.ID, "idSIButton9").click()
     time.sleep(random.uniform(4, 6))
-    wait.until(EC.presence_of_element_located((By.NAME, "passwd"))).send_keys("s$cK7osL*A5n3c")  # Make this more secure in production
+    wait.until(EC.presence_of_element_located((By.NAME, "passwd"))).send_keys("[password]")  # replace with actual password
     time.sleep(random.uniform(2, 4))
     driver.find_element(By.ID, "idSIButton9").click()
 
