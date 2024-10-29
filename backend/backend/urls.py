@@ -36,6 +36,7 @@ urlpatterns = [
 
     path('', TemplateView.as_view(template_name='index.html')),
     path('accounts/', include('allauth.urls')), # all OAuth operations will be performed under this route
+
     path('logout', LogoutView.as_view()), # default Django logout view at /logout
 
     path('assignments/', get_all_assignments, name='get_all_assignments'),
