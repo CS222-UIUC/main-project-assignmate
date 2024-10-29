@@ -42,5 +42,6 @@ urlpatterns = [
     path('courses/<int:course_id>/assignments/', get_assignments_by_course, name='get_assignments_by_course'),
     path('assignments/<int:assignment_id>/', get_assignment_by_id, name='get_assignment_by_id'),
     path('login/', canvas_login, name='canvas_login'),
-    path('callback/', canvas_callback, name='canvas_callback')
+    path('callback/', canvas_callback, name='canvas_callback'),
+    path('plwebscraper/', include('scraper.urls'))
 ]
