@@ -14,6 +14,7 @@ RUN pip install pytest-cov
 RUN pip install django-allauth
 RUN pip install python-dotenv
 RUN pip install social-auth-app-django
+RUN pip install canvasapi
 
 WORKDIR "/frontend"
 
