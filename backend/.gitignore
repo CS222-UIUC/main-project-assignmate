@@ -11,6 +11,22 @@ backend\package-lock.json
 
 backend\backend\.env
 
-backend/app1/__pycache__/
-backend/backend/__pycache__/
-backend/db.sqlite3
+
+# pytest cache
+.pytest_cache
+tests/__pycache__
+.coverage
+
+# package json
+package-lock.json
+
+# sqlite database
+db.sqlite3
+
+# ignoring pycache
+app1/__pycache__
+app1/migrations/__pycache__
+backend/__pycache__
+scraper/__pycache__
+scraper/migrations/__pycache__
+canvas/__pycache__
