@@ -30,4 +30,9 @@ jobs:
           pip install autopep8
       - name: Code Style Check - Fix
         run: |
-          autopep8 $(git ls-files '*.py')
+          autopep8 --in-place --aggressive --aggressive app1/*.py
+          autopep8 --in-place --aggressive --aggressive backend/*.py
+          autopep8 --in-place --aggressive --aggressive canvas/*.py
+          autopep8 --in-place --aggressive --aggressive scraper/*.py
+          autopep8 --in-place --aggressive --aggressive tests/*.py
+          autopep8 --in-place --aggressive --aggressive *.py
