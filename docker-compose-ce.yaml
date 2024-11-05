@@ -1,4 +1,4 @@
-version: "3.9"
+#version: "3.9"
 services:
   db:
     image: mariadb:10.11
@@ -19,7 +19,7 @@ services:
     depends_on:
       - db
     environment:
-      APP_FULL_BASE_URL: https://passbolt.local
+      APP_FULL_BASE_URL: https://assignmate.com #Update this variable with the server name you plan to use. 
       DATASOURCES_DEFAULT_HOST: "db"
       DATASOURCES_DEFAULT_USERNAME: "passbolt"
       DATASOURCES_DEFAULT_PASSWORD: "P4ssb0lt"
@@ -47,3 +47,13 @@ volumes:
   database_volume:
   gpg_volume:
   jwt_volume:
+
+
+# Variable name	                          Description	        Default value
+# EMAIL_DEFAULT_FROM_NAME	          From email username	        'Passbolt'
+# EMAIL_DEFAULT_FROM	              From email address	        'you@localhost'
+# EMAIL_TRANSPORT_DEFAULT_HOST	    Server hostname	            'localhost'
+# EMAIL_TRANSPORT_DEFAULT_PORT	    Server port	                    25
+# EMAIL_TRANSPORT_DEFAULT_USERNAME	Username for email server auth	null
+# EMAIL_TRANSPORT_DEFAULT_PASSWORD	Password for email server auth	null
+# EMAIL_TRANSPORT_DEFAULT_TLS	      Set tls	                        null
