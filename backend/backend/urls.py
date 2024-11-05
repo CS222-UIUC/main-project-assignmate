@@ -36,5 +36,5 @@ urlpatterns = [
 
     path('logout', LogoutView.as_view()), # default Django logout view at /logout
     path('plwebscraper/', include('scraper.urls')),
-    path('canvasdata/', include('canvasdata.urls'))
+    path('canvasapp/', include('canvasapp.urls'))
 ]

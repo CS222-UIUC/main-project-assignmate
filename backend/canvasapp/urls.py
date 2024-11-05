@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import courses_view, assignments_view
+from .views import CoursesView, AssignmentsView, AssignmentsByCourseView, AssignmentByIdView
 
 urlpatterns = [
-    path('courses/', courses_view, name='courses'),  # Endpoint to get courses
-    path('assignments/<int:course_id>/', assignments_view, name='assignments'),  # Endpoint to get assignments for a specific course
+    path('api/courses/', CoursesView.as_view(), name='courses'),
+    path('api/assignments/', AssignmentsView.as_view(), name='all_assignments'),
+    path('api/courses/<int:course_id>/assignments/', AssignmentsByCourseView.as_view(), name='assignments'),
+    path('api/courses/<int:course_id>/assignments/<int:assignment_id>/', AssignmentByIdView.as_view(), name='assignment'),
 ]

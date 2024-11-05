@@ -1,10 +1,12 @@
-from django.http import JsonResponse
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 from canvasapi import Canvas
 from canvasapi.exceptions import CanvasException
 from collections import defaultdict
 
 API_URL = "https://canvas.illinois.edu/"
-API_KEY = "[replace with actual API KEY]"
+API_KEY = "[insert your API key here]"
 
 # Initialize the Canvas object
 CANVAS = Canvas(API_URL, API_KEY)
@@ -15,9 +17,7 @@ def get_courses():
     courses = USER.get_courses()
     for course in courses:
         if not hasattr(course, 'id'):
-            print("A course in the list is missing an ID and will be skipped.")
             continue
-
         try:
             c = CANVAS.get_course(course.id)
             valid_courses.append(c)
@@ -25,24 +25,54 @@ def get_courses():
             pass
     return valid_courses
 
-def get_assignments(course_id):
-    assignments = defaultdict(list)
+def get_all_assignments():
+    all_assignments = defaultdict(list)
+    valid_courses = get_courses()
+    for course in valid_courses:
+        name = course.name
+        work = course.get_assignments(bucket="ungraded")
+        for w in work:
+            all_assignments[name].append(w.name)
+    return all_assignments
+
+def get_assignments_by_course(course_id):
+    assignments = []
     try:
         course = CANVAS.get_course(course_id)
         work = course.get_assignments()
         for w in work:
-            assignments[course.name].append(w.name)
+            assignments.append(w.name)
     except CanvasException:
-        print(f"Could not retrieve assignments for course ID {course_id}.")
+        pass
     return assignments
 
-def courses_view(request):
-    courses = get_courses()
-    course_list = [{"id": course.id, "name": course.name} for course in courses]
-    return JsonResponse(course_list, safe=False)
+def get_assignment_by_id(course_id, assignment_id):
+    try:
+        course = CANVAS.get_course(course_id)
+        assignment = course.get_assignment(assignment_id)
+        return assignment
+    except CanvasException:
+        return None
 
-def assignments_view(request, course_id):
-    assignments = get_assignments(course_id)
-    return JsonResponse(assignments, safe=False)
+class CoursesView(APIView):
+    def get(self, request):
+        courses = get_courses()
+        course_list = [{"id": course.id, "name": course.name} for course in courses]
+        return Response(course_list, status=status.HTTP_200_OK)
+    
+class AssignmentsView(APIView):
+    def get(self, request):
+        assignments = get_all_assignments()
+        return Response(assignments, status=status.HTTP_200_OK)
 
-# Create your views here.
+class AssignmentsByCourseView(APIView):
+    def get(self, request, course_id):
+        assignments = get_assignments_by_course(course_id)
+        return Response(assignments, status=status.HTTP_200_OK)
+
+class AssignmentByIdView(APIView):
+    def get(self, request, course_id, assignment_id):
+        assignment = get_assignment_by_id(course_id, assignment_id)
+        if assignment is None:
+            return Response("Assignment not found", status=status.HTTP_404_NOT_FOUND)
+        return Response({"name": assignment.name, "description": assignment.description}, status=status.HTTP_200_OK)
