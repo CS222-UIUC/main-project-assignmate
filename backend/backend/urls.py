@@ -27,11 +27,22 @@ from django.urls import path,include
 from django.views.generic import TemplateView # useful in displaying index.html template
 from django.contrib.auth.views import LogoutView
 
+from canvas import views
+from canvas.views import get_all_assignments, get_assignments_by_course, get_assignment_by_id, canvas_login, canvas_callback
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('backend/',include('app1.urls')), #app_auth urls
 
     path('', TemplateView.as_view(template_name='index.html')),
     path('accounts/', include('allauth.urls')), # all OAuth operations will be performed under this route
-    path('logout', LogoutView.as_view()) # default Django logout view at /logout
+
+    path('logout', LogoutView.as_view()), # default Django logout view at /logout
+
+    path('assignments/', get_all_assignments, name='get_all_assignments'),
+    path('courses/<int:course_id>/assignments/', get_assignments_by_course, name='get_assignments_by_course'),
+    path('assignments/<int:assignment_id>/', get_assignment_by_id, name='get_assignment_by_id'),
+    path('login/', canvas_login, name='canvas_login'),
+    path('callback/', canvas_callback, name='canvas_callback'),
+    path('plwebscraper/', include('scraper.urls'))
 ]
