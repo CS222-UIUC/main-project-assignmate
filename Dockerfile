@@ -15,3 +15,11 @@ RUN pip install django-allauth
 RUN pip install python-dotenv
 RUN pip install social-auth-app-django
 RUN pip install canvasapi
+RUN pip install pycodestyle
+RUN pip install autopep8
+RUN pip install pylint
+RUN pip install canvasapi
+
+WORKDIR "/frontend"
+
+RUN npm install
