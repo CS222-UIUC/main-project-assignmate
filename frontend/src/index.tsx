@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from './App.tsx';
+import reportWebVitals from './reportWebVitals.js';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Login from './auth/Login';
-import Signup from './auth/Signup';
+import Login from './auth/Login.tsx';
+import Signup from './auth/Signup.tsx';
 import { ChakraProvider } from '@chakra-ui/react'
+import AssignmentsDashboard from './assignments/AssignmentsDashboard.tsx';
 
 const router = createBrowserRouter([
   {
@@ -21,19 +22,28 @@ const router = createBrowserRouter([
     element: <Signup/>,
   },
   {
+    path: "/dashboard",
+    element: <AssignmentsDashboard/>
+  },
+  {
     path: "/",
     element: <App/>
   }
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <ChakraProvider>
-      <RouterProvider router={router} />
-    </ChakraProvider>
-  </React.StrictMode>
-);
+const container = document.getElementById('root');
+if (container) {
+  const root = ReactDOM.createRoot(container);
+  root.render(
+    <React.StrictMode>
+      <ChakraProvider>
+        <RouterProvider router={router} />
+      </ChakraProvider>
+    </React.StrictMode>
+  );
+} else {
+  console.error('Root container not found');
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
