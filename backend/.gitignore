@@ -29,4 +29,5 @@ app1/migrations/__pycache__
 backend/__pycache__
 scraper/__pycache__
 scraper/migrations/__pycache__
-canvas/__pycache__
+canvasapp/__pycache__
+canvasapp/migrations/__pycache__
