@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'app1',
     'canvas',
     'scraper',
+    'email_handler',
 
     'allauth',
     'allauth.account',
@@ -70,25 +71,16 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'mongodeebee@myyahoo.com'  # Your Gmail address
+EMAIL_HOST_PASSWORD = 'assignmateyahoo'  # App-specific password or your Gmail password
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# Add the URL to the AUTHENTICATED_USER property
-# SOCIAL_AUTH_USER_MODEL = 'auth.User'
-# SOCIAL_AUTH_PIPELINE = (
-#     'social_core.pipeline.social_auth.social_details',
-#     'social_core.pipeline.social_auth.social_uid',
-#     'social_core.pipeline.social_auth.auth_allowed',
-#     'social_core.pipeline.social_auth.social_user',
-#     'social_core.pipeline.user.get_username',
-#     'social_core.pipeline.user.create_user',
-#     'social_core.pipeline.social_auth.associate_user',
-#     'social_core.pipeline.social_auth.load_extra_data',
-#     'app1.pipeline.validate_illinois_email',  # Custom validation
-# )
 
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
-#     'https://www.googleapis.com/auth/userinfo.email',
-#     'https://www.googleapis.com/auth/userinfo.profile',
-# ]
 ROOT_URLCONF = "backend.urls"
 
 TEMPLATES = [

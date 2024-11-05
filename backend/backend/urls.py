@@ -32,6 +32,7 @@ from canvas.views import get_all_assignments, get_assignments_by_course, get_ass
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('email/', include('email_handler.urls')),
     path('backend/',include('app1.urls')), #app_auth urls
 
     path('', TemplateView.as_view(template_name='index.html')),
@@ -44,5 +45,6 @@ urlpatterns = [
     path('assignments/<int:assignment_id>/', get_assignment_by_id, name='get_assignment_by_id'),
     path('login/', canvas_login, name='canvas_login'),
     path('callback/', canvas_callback, name='canvas_callback'),
-    path('plwebscraper/', include('scraper.urls'))
+    path('plwebscraper/', include('scraper.urls')),
+    
 ]
