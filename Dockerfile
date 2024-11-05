@@ -19,7 +19,4 @@ RUN pip install pycodestyle
 RUN pip install autopep8
 RUN pip install pylint
 RUN pip install canvasapi
-
-WORKDIR "/frontend"
-
-RUN npm install
+RUN pip install django-rest-framework
