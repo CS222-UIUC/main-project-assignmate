@@ -4,14 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    >
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
+    <style>
+        :root {
+            --pico-margin: 1rem;
+            --pico-typography-spacing-vertical: 1.5rem;
+            --pico-form-element-spacing-vertical: 1rem;
+            --pico-form-element-spacing-horizontal: 1.25rem;
+        }
+    </style>
+    <title>Assignmate</title>
 </head>
-<body>
-    <h1 style="text-align: center;"> My google OAuth Project </h1>
-    {% if user.is_authenticated %}
-    <p>Welcome. You are logged in as {{user.username}} </p>
-    {% else %}
-    <a href="{% provider_login_url 'google' %}">Login with Google</a>
-    {% endif %}
+<body class="container">
+    <header>
+        <h1>Assignmate</h1>
+    </header>
+    <main class="container-fluid">
+        {% if user.is_authenticated %}
+        <p>Welcome, {{user.username}}.</p>
+        <form action="/logout" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Logout"></input>
+        </form>
+        {% else %}
+        <form action="{% provider_login_url 'google' %}">
+            <input type="submit" value="Login with Google"></button>
+        </form>
+        {% endif %}
+    </main>
 </body>
 </html>
