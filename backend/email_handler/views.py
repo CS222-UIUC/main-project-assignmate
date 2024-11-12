@@ -10,7 +10,7 @@ from django.conf import settings
 def send_test_email(request):
     subject = "Hello from Django Email Handler"
     message = "This is a test email sent from our Django email handler."
-    recipient_list = ["annapoorna.narayan@gmail.com"]  # Replace with the actual recipient email
+    recipient_list = ["xyz.com"]  # Replace with the actual recipient email
 
     try:
         send_mail(
