@@ -24,6 +24,7 @@ package-lock.json
 db.sqlite3
 
 # ignoring pycache
+__pycache__
 app1/__pycache__
 app1/migrations/__pycache__
 backend/__pycache__
@@ -32,3 +33,4 @@ scraper/migrations/__pycache__
 canvasapp/__pycache__
 canvasapp/migrations/__pycache__
 **/__pycache__
+canvas/__pycache__
