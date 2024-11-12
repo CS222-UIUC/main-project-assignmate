@@ -4,9 +4,13 @@ from rest_framework import status
 from canvasapi import Canvas
 from canvasapi.exceptions import CanvasException
 from collections import defaultdict
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 API_URL = "https://canvas.illinois.edu/"
-API_KEY = "[insert your API key here]"
+API_KEY = os.environ["CANVAS_API_KEY"]
 
 # Initialize the Canvas object
 CANVAS = Canvas(API_URL, API_KEY)
