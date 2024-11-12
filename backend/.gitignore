@@ -31,3 +31,4 @@ scraper/__pycache__
 scraper/migrations/__pycache__
 canvasapp/__pycache__
 canvasapp/migrations/__pycache__
+**/__pycache__
