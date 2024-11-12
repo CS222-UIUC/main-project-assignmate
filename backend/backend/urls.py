@@ -35,6 +35,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')), # all OAuth operations will be performed under this route
 
     path('logout', LogoutView.as_view()), # default Django logout view at /logout
-    path('plwebscraper/', include('scraper.urls')),
+    path('pl/', include('scraper.urls')),
     path('canvasapp/', include('canvasapp.urls'))
 ]
