@@ -3,8 +3,6 @@ FROM mcr.microsoft.com/devcontainers/base:ubuntu-22.04
 RUN sudo apt update
 RUN sudo apt install python3
 RUN sudo apt install python3-pip -y
-RUN curl -sL https://deb.nodesource.com/setup_23.x | sudo -E bash -
-RUN sudo apt install nodejs
 
 WORKDIR "/backend"
 RUN pip install selenium
