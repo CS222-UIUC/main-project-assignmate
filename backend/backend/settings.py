@@ -45,14 +45,15 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'django.contrib.sites',
+    'rest_framework',
 
 
     'social_django',
     'app1',
-    'canvas',
     'scraper',
     'email_handler',
 
+    'canvasapp',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

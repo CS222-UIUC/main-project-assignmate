@@ -8,7 +8,6 @@ from .validators import validate_illinois_email
 from django.core.exceptions import ValidationError
 
 
-
 class CustomEmailValidatorTests(TestCase):
     def test_valid_illinois_email(self):
         """
@@ -17,7 +16,8 @@ class CustomEmailValidatorTests(TestCase):
         try:
             validate_illinois_email('test@illinois.edu')
         except ValidationError:
-            self.fail("validate_illinois_email() raised ValidationError unexpectedly!")
+            self.fail(
+                "validate_illinois_email() raised ValidationError unexpectedly!")
 
     def test_invalid_email(self):
         """
@@ -25,6 +25,7 @@ class CustomEmailValidatorTests(TestCase):
         """
         with self.assertRaises(ValidationError):
             validate_illinois_email('test@example.com')
+
 
 class LoginTests(TestCase):
     def setUp(self):
@@ -44,8 +45,9 @@ class LoginTests(TestCase):
             'password': 'testpassword'
         }
         response = self.client.post(reverse('account_login'), login_data)
-        self.assertEqual(response.status_code, 200)  # Expecting a redirect on successful login
-        #self.assertRedirects(response, '/')  # Should redirect to the homepage after login
+        # Expecting a redirect on successful login
+        self.assertEqual(response.status_code, 200)
+        # self.assertRedirects(response, '/')  # Should redirect to the homepage after login
 
     def test_login_failure(self):
         """
@@ -56,5 +58,5 @@ class LoginTests(TestCase):
             'password': 'wrongpassword'
         }
         response = self.client.post(reverse('account_login'), login_data)
-        self.assertEqual(response.status_code, 200)  # Should return the login page again
-
+        # Should return the login page again
+        self.assertEqual(response.status_code, 200)

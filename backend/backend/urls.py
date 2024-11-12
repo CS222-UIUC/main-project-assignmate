@@ -27,9 +27,6 @@ from django.urls import path,include
 from django.views.generic import TemplateView # useful in displaying index.html template
 from django.contrib.auth.views import LogoutView
 
-from canvas import views
-from canvas.views import get_all_assignments, get_assignments_by_course, get_assignment_by_id, canvas_login, canvas_callback
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('email/', include('email_handler.urls')),
@@ -46,5 +43,5 @@ urlpatterns = [
     path('login/', canvas_login, name='canvas_login'),
     path('callback/', canvas_callback, name='canvas_callback'),
     path('plwebscraper/', include('scraper.urls')),
-    
+    path('canvasapp/', include('canvasapp.urls'))
 ]
