@@ -3,8 +3,9 @@ FROM mcr.microsoft.com/devcontainers/base:ubuntu-22.04
 RUN sudo apt update
 RUN sudo apt install python3
 RUN sudo apt install python3-pip -y
-RUN curl -sL https://deb.nodesource.com/setup_23.x | sudo -E bash -
-RUN sudo apt install nodejs
+RUN apt-get install -y wget
+RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN apt-get install -y ./google-chrome-stable_current_amd64.deb
 
 WORKDIR "/backend"
 RUN pip install selenium
@@ -20,3 +21,7 @@ RUN pip install autopep8
 RUN pip install pylint
 RUN pip install canvasapi
 RUN pip install django-rest-framework
+RUN pip install pytest-django
+RUN pip install chromedriver-py
+RUN pip install webdriver-manager
+RUN pip install python-dotenv
