@@ -8,7 +8,7 @@
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
     >
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <style>
         :root {
             --pico-margin: 1rem;
@@ -16,6 +16,19 @@
             --pico-form-element-spacing-vertical: 1rem;
             --pico-form-element-spacing-horizontal: 1.25rem;
         }
+
+        .assignment-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        /* Responsive adjustment */
+        @media (max-width: 600px) {
+            .assignment-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
     </style>
     <title>Assignmate</title>
 </head>
@@ -23,9 +36,23 @@
     <header>
         <h1>Assignmate</h1>
     </header>
-    <main class="container-fluid">
+    <main class="container-fluid" id="app">
         {% if user.is_authenticated %}
-        <p>Welcome, {{user.username}}.</p>
+        <p>Welcome, <b>{{user.username}}</b>.</p>
+        <div>
+            <button v-if="!loading" @click="refreshAssignments">Refresh</button>
+            <p v-if="loading">Loading assignments...</p>
+            <div class="assignment-grid">
+                <div v-for="assignment in assignments" :key="assignment.title">
+                    <article>
+                        <header>
+                            <h2 v-html="assignment.title"></h2>
+                        </header>
+                        <p v-html="assignment.description"></p>
+                    </article>
+                </div>
+            </div>
+        </div>
         <form action="/logout" method="post">
             {% csrf_token %}
             <input type="submit" value="Logout"></input>
@@ -37,4 +64,57 @@
         {% endif %}
     </main>
 </body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            assignments: [],
+            loading: false
+        },
+        mounted(){
+            this.refreshAssignments();
+        },
+        methods: {
+            async refreshAssignments() {
+                this.loading = true;
+                let response = await fetch('/canvasapp/api/assignments/', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': this.getCookie('csrftoken')
+                    }
+                });
+                let data = await response.json();
+                console.log(data);
+                // Reformat from a dictionary of class name -> list of assignments to list of {title: assignment, description: class name}
+                let flattenedAssignments = Object.entries(data).map(([className, assignments]) => {
+                    return assignments.map(assignment => {
+                        return {
+                            title: assignment,
+                            description: className
+                        };
+                    });
+                }).flat();
+                this.assignments = flattenedAssignments;
+                console.log(this.assignments);
+                this.loading = false;
+            },
+            getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== "") {
+                    const cookies = document.cookie.split(";");
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.startsWith(name + "=")) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                console.log("Cookie value: ", cookieValue);
+                return cookieValue;
+            }
+        }
+    });
+</script>
 </html>

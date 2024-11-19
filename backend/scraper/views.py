@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from django.http import JsonResponse
 from .utils import scrape_prairie_learn_data
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 
-def scrape_data_view(request):
-    # Run the scraper
-    data = scrape_prairie_learn_data()
-    
-    # Return the scraped data as JSON
-    return JsonResponse(data, safe=False)
+class DataView(APIView):
+    def get(self, request):
+        data = scrape_prairie_learn_data()
+        return Response(data, status=status.HTTP_200_OK)
 
 # Create your views here.

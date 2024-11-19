@@ -4,10 +4,13 @@ from rest_framework import status
 from canvasapi import Canvas
 from canvasapi.exceptions import CanvasException
 from collections import defaultdict
-import requests
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 API_URL = "https://canvas.illinois.edu/"
-API_KEY = "[INSERT API TOKEN HERE]"
+API_KEY = os.environ["CANVAS_API_KEY"]
 
 # Initialize the Canvas object
 CANVAS = Canvas(API_URL, API_KEY)
@@ -44,9 +47,17 @@ def get_all_assignments():
     valid_courses = get_courses()
     for course in valid_courses:
         name = course.name
-        work = course.get_assignments(bucket="ungraded")
-        for w in work:
-            all_assignments[name].append(w.name)
+        try:
+            work = course.get_assignments(bucket="ungraded")
+            for w in work:
+                assignment_data = {
+                    "name": w.name,
+                    "due_date": w.due_at,  # Due date of the assignment
+                    "points": w.points_possible  # Points the assignment is worth
+                }
+                all_assignments[name].append(assignment_data)
+        except CanvasException:
+            pass
     return all_assignments
 
 
@@ -56,7 +67,12 @@ def get_assignments_by_course(course_id):
         course = CANVAS.get_course(course_id)
         work = course.get_assignments()
         for w in work:
-            assignments.append(w.name)
+            assignment_data = {
+                "name": w.name,
+                "due_date": w.due_at,  # Due date of the assignment
+                "points": w.points_possible  # Points the assignment is worth
+            }
+            assignments.append(assignment_data)
     except CanvasException:
         pass
     return assignments
@@ -103,4 +119,12 @@ class AssignmentByIdView(APIView):
         assignment = get_assignment_by_id(course_id, assignment_id)
         if assignment is None:
             return Response("Assignment not found", status=status.HTTP_404_NOT_FOUND)
-        return Response({"name": assignment.name, "description": assignment.description}, status=status.HTTP_200_OK)
+        return Response(
+            {
+                "name": assignment.name,
+                "description": assignment.description,
+                "due_date": assignment.due_at,
+                "points": assignment.points_possible
+            },
+            status=status.HTTP_200_OK
+        )

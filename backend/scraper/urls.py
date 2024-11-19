@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import scrape_data_view
+from .views import DataView
 
 urlpatterns = [
-    path('scrape/', scrape_data_view, name='scrape_data'),
+    path('data/', DataView.as_view(), name='scrape_data'),
 ]
