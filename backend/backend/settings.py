@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 ]
 
-
+ROOT_URLCONF = "backend.urls"
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -154,7 +154,7 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-SITE_ID = 2
+SITE_ID=2
 # Access environment variables
 SOCIAL_AUTH_GOOGLE_OAUTH2_ID = os.getenv('GOOGLE_CLIENT_ID', 'default_value_if_not_set')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('GOOGLE_CLIENT_SECRET', 'default_value_if_not_set')
@@ -178,20 +178,14 @@ SOCIALACCOUNT_PROVIDERS = {
 CANVAS_CLIENT_ID = "client_id"
 CANVAS_CLIENT_SECRET = "client_secret"
 CANVAS_REDIRECT_URI = "client_redirect_uri"
-# Redirect URL after successful login
-LOGIN_URL = '/login/'
-#LOGIN_REDIRECT_URL = 'http://localhost:8000/oauth/complete/google-oauth2/'
 LOGIN_REDIRECT_URL = '/'
-# LOGOUT_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/accounts/login/'
+LOGOUT_REDIRECT_URL = '/'
+
 AUTHENTICATION_BACKENDS = (
     #'social_core.backends.google.GoogleOAuth2',
-    'app1.backends.CustomAuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
+    'app1.backends.CustomAuthenticationBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 ACCOUNT_PERSISTENT_LOGIN = False
 
-ACCOUNT_FORMS = {
-    'signup': 'app1.forms.CustomSignupForm',  # Update this path if necessary
-}

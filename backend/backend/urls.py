@@ -26,16 +26,22 @@ from django.contrib import admin
 from django.urls import path,include
 from django.views.generic import TemplateView # useful in displaying index.html template
 from django.contrib.auth.views import LogoutView
-
+from app1 import views
+# from canvasapp.views import get_all_assignments, get_assignments_by_course, get_assignment_by_id, canvas_login;
 urlpatterns = [
     path('admin/', admin.site.urls),
+   
+    #path('', include("app1.urls")),
+
     path('email/', include('email_handler.urls')),
-    path('backend/',include('app1.urls')), #app_auth urls
 
-    path('', TemplateView.as_view(template_name='index.html')),
+    path('login/google/', views.custom_login, name='custom_login'),
+    path('login/', views.custom_login, name='login'),
+    path('logout', LogoutView.as_view(), name = 'logout'), # default Django logout view at /logout
+
     path('accounts/', include('allauth.urls')), # all OAuth operations will be performed under this route
+    path('', TemplateView.as_view(template_name='index.html')),
 
-    path('logout', LogoutView.as_view()), # default Django logout view at /logout
     path('pl/', include('scraper.urls')),
 
     path('assignments/', get_all_assignments, name='get_all_assignments'),
