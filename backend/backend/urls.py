@@ -38,10 +38,10 @@ urlpatterns = [
     path('logout', LogoutView.as_view()), # default Django logout view at /logout
     path('pl/', include('scraper.urls')),
 
-    path('assignments/', get_all_assignments, name='get_all_assignments'),
-    path('courses/<int:course_id>/assignments/', get_assignments_by_course, name='get_assignments_by_course'),
-    path('assignments/<int:assignment_id>/', get_assignment_by_id, name='get_assignment_by_id'),
-    path('login/', canvas_login, name='canvas_login'),
-    path('callback/', canvas_callback, name='canvas_callback'),
+    #path('assignments/', get_all_assignments, name='get_all_assignments'),
+    #path('courses/<int:course_id>/assignments/', get_assignments_by_course, name='get_assignments_by_course'),
+    #path('assignments/<int:assignment_id>/', get_assignment_by_id, name='get_assignment_by_id'),
+    #path('login/', canvas_login, name='canvas_login'),
+    #path('callback/', canvas_callback, name='canvas_callback'),
     path('canvasapp/', include('canvasapp.urls'))
 ]

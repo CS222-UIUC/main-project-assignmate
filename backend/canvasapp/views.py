@@ -16,6 +16,7 @@ API_KEY = os.environ["CANVAS_API_KEY"]
 CANVAS = Canvas(API_URL, API_KEY)
 USER = CANVAS.get_user('self')
 
+
 def get_courses():
     valid_courses = []
     courses = USER.get_courses()
@@ -29,15 +30,25 @@ def get_courses():
             pass
     return valid_courses
 
+
 def get_all_assignments():
     all_assignments = defaultdict(list)
     valid_courses = get_courses()
     for course in valid_courses:
         name = course.name
-        work = course.get_assignments(bucket="ungraded")
-        for w in work:
-            all_assignments[name].append(w.name)
+        try:
+            work = course.get_assignments(bucket="ungraded")
+            for w in work:
+                assignment_data = {
+                    "name": w.name,
+                    "due_date": w.due_at,  # Due date of the assignment
+                    "points": w.points_possible  # Points the assignment is worth
+                }
+                all_assignments[name].append(assignment_data)
+        except CanvasException:
+            pass
     return all_assignments
+
 
 def get_assignments_by_course(course_id):
     assignments = []
@@ -45,10 +56,16 @@ def get_assignments_by_course(course_id):
         course = CANVAS.get_course(course_id)
         work = course.get_assignments()
         for w in work:
-            assignments.append(w.name)
+            assignment_data = {
+                "name": w.name,
+                "due_date": w.due_at,  # Due date of the assignment
+                "points": w.points_possible  # Points the assignment is worth
+            }
+            assignments.append(assignment_data)
     except CanvasException:
         pass
     return assignments
+
 
 def get_assignment_by_id(course_id, assignment_id):
     try:
@@ -58,25 +75,37 @@ def get_assignment_by_id(course_id, assignment_id):
     except CanvasException:
         return None
 
+
 class CoursesView(APIView):
     def get(self, request):
         courses = get_courses()
         course_list = [{"id": course.id, "name": course.name} for course in courses]
         return Response(course_list, status=status.HTTP_200_OK)
-    
+
+
 class AssignmentsView(APIView):
     def get(self, request):
         assignments = get_all_assignments()
         return Response(assignments, status=status.HTTP_200_OK)
+
 
 class AssignmentsByCourseView(APIView):
     def get(self, request, course_id):
         assignments = get_assignments_by_course(course_id)
         return Response(assignments, status=status.HTTP_200_OK)
 
+
 class AssignmentByIdView(APIView):
     def get(self, request, course_id, assignment_id):
         assignment = get_assignment_by_id(course_id, assignment_id)
         if assignment is None:
             return Response("Assignment not found", status=status.HTTP_404_NOT_FOUND)
-        return Response({"name": assignment.name, "description": assignment.description}, status=status.HTTP_200_OK)
+        return Response(
+            {
+                "name": assignment.name,
+                "description": assignment.description,
+                "due_date": assignment.due_at,
+                "points": assignment.points_possible
+            },
+            status=status.HTTP_200_OK
+        )
