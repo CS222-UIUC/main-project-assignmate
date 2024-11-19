@@ -1,75 +1,81 @@
-{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load socialaccount %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-    >
+    <!-- Include Vue.js -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <style>
-        :root {
-            --pico-margin: 1rem;
-            --pico-typography-spacing-vertical: 1.5rem;
-            --pico-form-element-spacing-vertical: 1rem;
-            --pico-form-element-spacing-horizontal: 1.25rem;
-        }
-
-        .assignment-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-        /* Responsive adjustment */
-        @media (max-width: 600px) {
-            .assignment-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-    </style>
+    <!-- Vuetify CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <!-- Vuetify JS -->
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
     <title>Assignmate</title>
 </head>
-<body class="container">
-    <header>
-        <h1>Assignmate</h1>
-    </header>
-    <main class="container-fluid" id="app">
-        {% if user.is_authenticated %}
-        <p>Welcome, <b>{{user.username}}</b>.</p>
-        <div>
-            <button v-if="!loading" @click="refreshAssignments">Refresh</button>
-            <p v-if="loading">Loading assignments...</p>
-            <div class="assignment-grid">
-                <div v-for="assignment in assignments" :key="assignment.title">
-                    <article>
-                        <header>
-                            <h2 v-html="assignment.title"></h2>
-                        </header>
-                        <p v-html="assignment.description"></p>
-                    </article>
-                </div>
-            </div>
-        </div>
-        <form action="/logout" method="post">
-            {% csrf_token %}
-            <input type="submit" value="Logout"></input>
-        </form>
-        {% else %}
-        <form action="{% provider_login_url 'google' %}">
-            <input type="submit" value="Login with Google"></button>
-        </form>
-        {% endif %}
-    </main>
+<body>
+    <div id="app">
+        <v-app>
+            <v-app-bar>
+                <v-toolbar-title>Assignmate</v-toolbar-title>
+            </v-app-bar>
+            <v-main>
+                {% if user.is_authenticated %}
+                <v-container>
+                    <p>Welcome, <b>{{user.username}}</b>.</p>
+                    <div>
+                        <v-btn v-if="!loading" @click="refreshAssignments">Refresh</v-btn>
+                        <!-- View Switch Buttons -->
+                        <v-btn @click="currentView = 'list'">List View</v-btn>
+                        <v-btn @click="currentView = 'calendar'">Calendar View</v-btn>
+                        <p v-if="loading">Loading assignments...</p>
+                        <!-- List View -->
+                        <div v-if="currentView === 'list'">
+                            <v-container>
+                                <v-row>
+                                    <v-col cols="12" sm="6" md="4" v-for="assignment in assignments" :key="assignment.title">
+                                        <v-card>
+                                            <v-card-title v-text="assignment.title"></v-card-title>
+                                            <v-card-text v-text="assignment.description"></v-card-text>
+                                        </v-card>
+                                    </v-col>
+                                </v-row>
+                            </v-container>
+                        </div>
+                        <!-- Calendar View -->
+                        <div v-else-if="currentView === 'calendar'">
+                            <v-calendar
+                                :events="events"
+                            ></v-calendar>
+                        </div>
+                    </div>
+                    <form action="/logout" method="post">
+                        {% csrf_token %}
+                        <v-btn type="submit">Logout</v-btn>
+                    </form>
+                </v-container>
+                {% else %}
+                <v-container>
+                    <form action="{% provider_login_url 'google' %}">
+                        <v-btn type="submit">Login with Google</v-btn>
+                    </form>
+                </v-container>
+                {% endif %}
+            </v-main>
+        </v-app>
+    </div>
 </body>
 <script>
+    // Initialize Vue and Vuetify
     new Vue({
         el: '#app',
+        vuetify: new Vuetify({
+            theme: { dark: true }
+        }),
         data: {
             assignments: [],
-            loading: false
+            events: [],
+            loading: false,
+            currentView: 'list' // 'list' or 'calendar'
         },
         mounted(){
             this.refreshAssignments();
@@ -86,17 +92,24 @@
                 });
                 let data = await response.json();
                 console.log(data);
-                // Reformat from a dictionary of class name -> list of assignments to list of {title: assignment, description: class name}
+                // Reformat from a dictionary of class name -> list of assignments to list of assignments
                 let flattenedAssignments = Object.entries(data).map(([className, assignments]) => {
                     return assignments.map(assignment => {
                         return {
-                            title: assignment,
-                            description: className
+                            title: assignment["name"],
+                            description: className,
+                            points: assignment["points"],
+                            date: new Date(assignment["due_date"])
                         };
                     });
                 }).flat();
                 this.assignments = flattenedAssignments;
-                console.log(this.assignments);
+                // Prepare events for the Vuetify calendar
+                this.events = this.assignments.map(assignment => ({
+                    name: assignment.title,
+                    start: assignment.date.toISOString().substr(0,10) // format date as 'YYYY-MM-DD'
+                }));
+                console.log(this.events);
                 this.loading = false;
             },
             getCookie(name) {
