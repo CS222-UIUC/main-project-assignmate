@@ -34,3 +34,4 @@ canvasapp/__pycache__
 canvasapp/migrations/__pycache__
 **/__pycache__
 canvas/__pycache__
+email_handler/__pycache__
