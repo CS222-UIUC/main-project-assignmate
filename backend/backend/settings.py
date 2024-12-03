@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 ]
 
-
+ROOT_URLCONF = "backend.urls"
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -178,12 +178,9 @@ SOCIALACCOUNT_PROVIDERS = {
 CANVAS_CLIENT_ID = "client_id"
 CANVAS_CLIENT_SECRET = "client_secret"
 CANVAS_REDIRECT_URI = "client_redirect_uri"
-# Redirect URL after successful login
-LOGIN_URL = '/login/'
-#LOGIN_REDIRECT_URL = 'http://localhost:8000/oauth/complete/google-oauth2/'
 LOGIN_REDIRECT_URL = '/'
-# LOGOUT_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/accounts/login/'
+LOGOUT_REDIRECT_URL = '/'
+SOCIALACCOUNT_LOGIN_ON_GET = True
 AUTHENTICATION_BACKENDS = (
     #'social_core.backends.google.GoogleOAuth2',
     'app1.backends.CustomAuthenticationBackend',
@@ -191,7 +188,3 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 ACCOUNT_PERSISTENT_LOGIN = False
-
-ACCOUNT_FORMS = {
-    'signup': 'app1.forms.CustomSignupForm',  # Update this path if necessary
-}

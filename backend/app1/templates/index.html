@@ -48,14 +48,15 @@
                             ></v-calendar>
                         </div>
                     </div>
-                    <form action="/logout" method="post">
+                    <form action="/logout" method = "post">
                         {% csrf_token %}
                         <v-btn type="submit">Logout</v-btn>
                     </form>
                 </v-container>
                 {% else %}
                 <v-container>
-                    <form action="{% provider_login_url 'google' %}">
+                    <form action="{% provider_login_url 'google' %}" method = "post">
+                        {% csrf_token %}
                         <v-btn type="submit">Login with Google</v-btn>
                     </form>
                 </v-container>
