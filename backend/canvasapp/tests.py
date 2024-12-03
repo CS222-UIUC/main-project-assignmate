@@ -3,6 +3,7 @@ from django.urls import reverse
 from unittest.mock import patch
 from canvasapi.exceptions import CanvasException
 
+
 @pytest.mark.django_db
 class TestCanvasDataViews:
 
@@ -41,5 +42,6 @@ class TestCanvasDataViews:
         # Simulate a CanvasException being raised
         mock_get_assignments.side_effect = CanvasException
 
-        response = client.get(reverse('assignments', kwargs={'course_id': 999})) 
-        assert response.status_code == 500 
+        response = client.get(
+            reverse('assignments', kwargs={'course_id': 999}))
+        assert response.status_code == 500
