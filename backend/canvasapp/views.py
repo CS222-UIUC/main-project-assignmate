@@ -79,7 +79,8 @@ def get_assignment_by_id(course_id, assignment_id):
 class CoursesView(APIView):
     def get(self, request):
         courses = get_courses()
-        course_list = [{"id": course.id, "name": course.name} for course in courses]
+        course_list = [{"id": course.id, "name": course.name}
+                       for course in courses]
         return Response(course_list, status=status.HTTP_200_OK)
 
 

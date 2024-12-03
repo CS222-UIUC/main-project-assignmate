@@ -1,0 +1,227 @@
+=============================================================== test session starts ================================================================
+platform linux -- Python 3.10.12, pytest-8.3.3, pluggy-1.5.0
+django: version: 5.1.3, settings: backend.settings (from ini)
+rootdir: /workspaces/main-project-assignmate/backend
+configfile: pytest.ini
+plugins: django-4.9.0, cov-6.0.0
+collected 10 items                                                                                                                                 
+
+app1/tests.py ....                                                                                                                           [ 40%]
+canvasapp/tests.py FFF                                                                                                                       [ 70%]
+scraper/scraper_tests.py FFF                                                                                                                 [100%]
+
+===================================================================== FAILURES =====================================================================
+______________________________________________________ TestCanvasDataViews.test_courses_view _______________________________________________________
+
+args = (<tests.TestCanvasDataViews object at 0x7f2ad78b6a40>,), keywargs = {'client': <django.test.client.Client object at 0x7f2ad6ee7010>}
+
+    @wraps(func)
+    def patched(*args, **keywargs):
+>       with self.decoration_helper(patched,
+                                    args,
+                                    keywargs) as (newargs, newkeywargs):
+
+/usr/lib/python3.10/unittest/mock.py:1376: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.10/contextlib.py:135: in __enter__
+    return next(self.gen)
+/usr/lib/python3.10/unittest/mock.py:1358: in decoration_helper
+    arg = exit_stack.enter_context(patching)
+/usr/lib/python3.10/contextlib.py:492: in enter_context
+    result = _cm_type.__enter__(cm)
+/usr/lib/python3.10/unittest/mock.py:1431: in __enter__
+    self.target = self.getter()
+/usr/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+target = 'canvasdata.views'
+
+    def _importer(target):
+        components = target.split('.')
+        import_path = components.pop(0)
+>       thing = __import__(import_path)
+E       ModuleNotFoundError: No module named 'canvasdata'
+
+/usr/lib/python3.10/unittest/mock.py:1257: ModuleNotFoundError
+____________________________________________________ TestCanvasDataViews.test_assignments_view _____________________________________________________
+
+args = (<tests.TestCanvasDataViews object at 0x7f2ad78b6da0>,), keywargs = {'client': <django.test.client.Client object at 0x7f2ad6c92dd0>}
+
+    @wraps(func)
+    def patched(*args, **keywargs):
+>       with self.decoration_helper(patched,
+                                    args,
+                                    keywargs) as (newargs, newkeywargs):
+
+/usr/lib/python3.10/unittest/mock.py:1376: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.10/contextlib.py:135: in __enter__
+    return next(self.gen)
+/usr/lib/python3.10/unittest/mock.py:1358: in decoration_helper
+    arg = exit_stack.enter_context(patching)
+/usr/lib/python3.10/contextlib.py:492: in enter_context
+    result = _cm_type.__enter__(cm)
+/usr/lib/python3.10/unittest/mock.py:1431: in __enter__
+    self.target = self.getter()
+/usr/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+target = 'canvasdata.views'
+
+    def _importer(target):
+        components = target.split('.')
+        import_path = components.pop(0)
+>       thing = __import__(import_path)
+E       ModuleNotFoundError: No module named 'canvasdata'
+
+/usr/lib/python3.10/unittest/mock.py:1257: ModuleNotFoundError
+_____________________________________________ TestCanvasDataViews.test_assignments_view_invalid_course _____________________________________________
+
+args = (<tests.TestCanvasDataViews object at 0x7f2ad78b7160>,), keywargs = {'client': <django.test.client.Client object at 0x7f2ad6da7bb0>}
+
+    @wraps(func)
+    def patched(*args, **keywargs):
+>       with self.decoration_helper(patched,
+                                    args,
+                                    keywargs) as (newargs, newkeywargs):
+
+/usr/lib/python3.10/unittest/mock.py:1376: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.10/contextlib.py:135: in __enter__
+    return next(self.gen)
+/usr/lib/python3.10/unittest/mock.py:1358: in decoration_helper
+    arg = exit_stack.enter_context(patching)
+/usr/lib/python3.10/contextlib.py:492: in enter_context
+    result = _cm_type.__enter__(cm)
+/usr/lib/python3.10/unittest/mock.py:1431: in __enter__
+    self.target = self.getter()
+/usr/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+target = 'canvasdata.views'
+
+    def _importer(target):
+        components = target.split('.')
+        import_path = components.pop(0)
+>       thing = __import__(import_path)
+E       ModuleNotFoundError: No module named 'canvasdata'
+
+/usr/lib/python3.10/unittest/mock.py:1257: ModuleNotFoundError
+_________________________________________________________ ScraperTests.test_scraper_empty __________________________________________________________
+
+self = <scraper_tests.ScraperTests testMethod=test_scraper_empty>, mock_scrape = <MagicMock name='scrape_prairie_learn_data' id='139821970456000'>
+
+    @patch('scraper.utils.scrape_prairie_learn_data')
+    def test_scraper_empty(self, mock_scrape):
+        """
+        returns no data (empty).
+        """
+        mock_scrape.return_value = {}
+    
+        response = self.client.get(reverse('scrape_data'))
+    
+        self.assertEqual(response.status_code, 200)
+    
+>       self.assertJSONEqual(str(response.content, encoding='utf8'), {})
+
+scraper/scraper_tests.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.10/dist-packages/django/test/testcases.py:1022: in assertJSONEqual
+    self.assertEqual(data, expected_data, msg=msg)
+E   AssertionError: {'CS 225': [['POTD59', 'https://us.prairie[2163 chars]3']]} != {}
+E   Diff is 3026 characters long. Set self.maxDiff to None to see it.
+_________________________________________________________ ScraperTests.test_scraper_error __________________________________________________________
+
+self = <scraper_tests.ScraperTests testMethod=test_scraper_error>, mock_scrape = <MagicMock name='scrape_prairie_learn_data' id='139821969989952'>
+
+    @patch('scraper.utils.scrape_prairie_learn_data')
+    def test_scraper_error(self, mock_scrape):
+        """
+        error occurs during scraping.
+        """
+        mock_scrape.side_effect = Exception('Scraper error')
+    
+        response = self.client.get(reverse('scrape_data'))
+    
+>       self.assertEqual(response.status_code, 500)
+E       AssertionError: 200 != 500
+
+scraper/scraper_tests.py:53: AssertionError
+_______________________________________________________ ScraperTests.test_scraper_successful _______________________________________________________
+
+self = <scraper_tests.ScraperTests testMethod=test_scraper_successful>
+mock_scrape = <MagicMock name='scrape_prairie_learn_data' id='139821970212128'>
+
+    @patch('scraper.utils.scrape_prairie_learn_data')
+    def test_scraper_successful(self, mock_scrape):
+        """
+        successfully returns data.
+        """
+        mock_scrape.return_value = {
+            'Course 1': [('ASSIGN1', 'https://link1', 'Assignment 1', 'Due Date 1')],
+            'Course 2': [('ASSIGN2', 'https://link2', 'Assignment 2', 'Due Date 2')]
+        }
+    
+        response = self.client.get(reverse('scrape_data'))
+    
+        self.assertEqual(response.status_code, 200)
+    
+        expected_data = {
+            'Course 1': [('ASSIGN1', 'https://link1', 'Assignment 1', 'Due Date 1')],
+            'Course 2': [('ASSIGN2', 'https://link2', 'Assignment 2', 'Due Date 2')]
+        }
+>       self.assertJSONEqual(
+            str(response.content, encoding='utf8'), expected_data)
+
+scraper/scraper_tests.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.10/dist-packages/django/test/testcases.py:1022: in assertJSONEqual
+    self.assertEqual(data, expected_data, msg=msg)
+E   AssertionError: {'CS 225': [['POTD59', 'https://us.prairiele[2161 chars]3']]} != {'Course 1': [('ASSIGN1', 'https://link1', '[99 chars]2')]}
+E   Diff is 3175 characters long. Set self.maxDiff to None to see it.
+
+---------- coverage: platform linux, python 3.10.12-final-0 ----------
+Name                             Stmts   Miss  Cover
+----------------------------------------------------
+app1/__init__.py                     0      0   100%
+app1/admin.py                        1      0   100%
+app1/apps.py                         6      0   100%
+app1/forms.py                        7      3    57%
+app1/migrations/__init__.py          0      0   100%
+app1/models.py                       1      0   100%
+app1/signals.py                     10      0   100%
+app1/tests.py                       27      2    93%
+app1/urls.py                         4      0   100%
+app1/validators.py                   5      0   100%
+app1/views.py                       24     13    46%
+backend/__init__.py                  0      0   100%
+backend/settings.py                 34      0   100%
+backend/urls.py                      5      0   100%
+canvasapp/admin.py                   1      0   100%
+canvasapp/apps.py                    4      0   100%
+canvasapp/models.py                  1      0   100%
+canvasapp/tests.py                  23     11    52%
+canvasapp/urls.py                    3      0   100%
+canvasapp/views.py                  75     53    29%
+scraper/admin.py                     1      0   100%
+scraper/apps.py                      4      0   100%
+scraper/migrations/__init__.py       0      0   100%
+scraper/models.py                    1      0   100%
+scraper/scraper_tests.py            24      1    96%
+scraper/urls.py                      3      0   100%
+scraper/utils.py                    73      2    97%
+scraper/views.py                     6      0   100%
+----------------------------------------------------
+TOTAL                              343     85    75%
+
+============================================================= short test summary info ==============================================================
+FAILED canvasapp/tests.py::TestCanvasDataViews::test_courses_view - ModuleNotFoundError: No module named 'canvasdata'
+FAILED canvasapp/tests.py::TestCanvasDataViews::test_assignments_view - ModuleNotFoundError: No module named 'canvasdata'
+FAILED canvasapp/tests.py::TestCanvasDataViews::test_assignments_view_invalid_course - ModuleNotFoundError: No module named 'canvasdata'
+FAILED scraper/scraper_tests.py::ScraperTests::test_scraper_empty - AssertionError: {'CS 225': [['POTD59', 'https://us.prairie[2163 chars]3']]} != {}
+FAILED scraper/scraper_tests.py::ScraperTests::test_scraper_error - AssertionError: 200 != 500
+FAILED scraper/scraper_tests.py::ScraperTests::test_scraper_successful - AssertionError: {'CS 225': [['POTD59', 'https://us.prairiele[2161 chars]3']]} != {'Course 1': [('ASSIGN1', 'https://link1', '[99 chars]2')]}
+===================================================== 6 failed, 4 passed in 191.16s (0:03:11) ======================================================
