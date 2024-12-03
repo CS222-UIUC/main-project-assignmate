@@ -1,22 +1,46 @@
 # Project Overview
 
-This project is a web application built using Django, designed to manage various functionalities such as email handling, web scraping, and integration with external services like Canvas. The application is structured into multiple apps, each responsible for a specific feature.
+This project is a comprehensive web application developed using Django, aimed at streamlining various functionalities such as email management, web scraping, and seamless integration with external services like Canvas. The application is meticulously organized into multiple apps, each dedicated to a specific feature, promoting modularity and simplifying maintenance. By leveraging Django's robust framework, the project ensures scalability, security, and ease of development, making it an ideal solution for managing complex workflows and integrations.
+## Features
 
-## Project Structure
+- **Email Management**: Automates the process of sending, receiving, and organizing emails, ensuring efficient communication.
+- **Web Scraping**: Utilizes Selenium to extract data from various websites, enabling data collection and analysis.
+- **Canvas Integration**: Seamlessly connects with Canvas LMS to manage courses, assignments, and grades, enhancing the educational experience.
+- **User Authentication**: Implements secure user authentication using OAuth2, providing a safe and user-friendly login experience.
+- **Task Scheduling**: Schedules and automates repetitive tasks, improving productivity and reducing manual effort.
 
-- **app1**: Handles user authentication and custom email validation.
-- **canvasapp**: Integrates with Canvas to fetch courses and assignments.
-- **email_handler**: Manages email sending functionalities.
-- **scraper**: Contains web scraping utilities to gather data from external sources.
+## Contribution Guidelines
 
+We welcome contributions from the community! To contribute:
 
-## Prerequisites
+1. Fork the repository.
+2. Create a new branch for your feature or bugfix:
+    ```sh
+    git checkout -b feature-name
+    ```
+3. Make your changes and commit them with clear and concise messages.
+4. Push your changes to your forked repository:
+    ```sh
+    git push origin feature-name
+    ```
+5. Open a pull request to the main repository, describing your changes in detail.
+
+## Support
+
+If you encounter any issues or have questions, please open an issue on the GitHub repository. We will do our best to assist you promptly.
+
+## Acknowledgements
+
+We would like to thank all the contributors and the open-source community for their invaluable support and contributions to this project.
+
+## Requirements
 
 - Python 3.x
 - Django
+- Docker (for containerized setup)
 - Other dependencies listed in `requirements.txt`
 
-## Setup
+## Build Instructions
 
 1. Clone the repository:
     ```sh
@@ -29,45 +53,54 @@ This project is a web application built using Django, designed to manage various
     pip install -r requirements.txt
     ```
 
-3. Set up the database:
+## Running the Application
+
+### Step-by-Step
+
+1. Set up the database:
     ```sh
     python manage.py migrate
     ```
 
-4. Configure environment variables in the `.env` file located in the `backend` directory. Ensure the following variables are set:
+2. Configure environment variables in the `.env` file located in the `backend` directory. Ensure the following variables are set:
     ```properties
     GOOGLE_CLIENT_ID=<your-google-client-id>
     GOOGLE_CLIENT_SECRET=<your-google-client-secret>
     CANVAS_API_KEY=<your-canvas-api-key>
     ```
 
-## Running the Application
+3. Run the application:
+    ```sh
+    python manage.py runserver
+    ```
 
-To run the application, navigate to the `backend` directory and execute the following command:
+### Dockerized Version
 
-```sh
-python manage.py runserver
-```
+1. Build the Docker image:
+    ```sh
+    docker build -t project-image .
+    ```
 
-# Project Features and Documentation
+2. Run the Docker container:
+    ```sh
+    docker run -d -p 8000:8000 --env-file .env project-image
+    ```
 
-## Features
+## Configuration Details
 
-### 1. **User Authentication**
-- Implements custom email validation restricted to `@illinois.edu` domain.
-- Includes login and signup functionalities for secure access.
+- Environment variables are configured in the `.env` file located in the `backend` directory.
+- Ensure the following variables are set:
+    ```properties
+    GOOGLE_CLIENT_ID=<your-google-client-id>
+    GOOGLE_CLIENT_SECRET=<your-google-client-secret>
+    CANVAS_API_KEY=<your-canvas-api-key>
+    ```
 
-### 2. **Canvas Integration**
-- Fetches courses and assignments directly from Canvas.
-- Provides API endpoints for seamless access to course and assignment data.
+## Links to Important Services
 
-### 3. **Email Handling**
-- Sends test emails using Django's email backend.
-- Includes functionality for scheduled email sending.
-
-### 4. **Web Scraping**
-- Scrapes data from external websites using Selenium.
-- Offers API endpoints to retrieve scraped data.
+- [Django Documentation](https://docs.djangoproject.com/)
+- [Canvas API Documentation](https://canvas.instructure.com/doc/api/)
+- [Selenium Documentation](https://www.selenium.dev/documentation/)
 
 ---
 
