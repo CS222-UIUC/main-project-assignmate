@@ -37,12 +37,14 @@
                                     <v-col cols="12" sm="6" md="4" v-for="assignment in assignments"
                                         :key="assignment.title">
                                         <v-card>
+
                                             <v-card-title v-text="assignment.title"></v-card-title>
                                             <v-card-text v-text="assignment.description"></v-card-text>
-                                            <v-card-text v-text="assignment.date"></v-card-text>
-                                            <v-card-actions>
-                                                <v-checkbox label="Done" color="green"></v-checkbox>
-                                            </v-card-actions>
+                                            <vspacer>
+                                                <div class="text-center">Due Date: <v-card-text
+                                                        v-text="assignment.date"></v-card-text></div>
+                                            </vspacer>
+
                                         </v-card>
                                     </v-col>
                                 </v-row>
