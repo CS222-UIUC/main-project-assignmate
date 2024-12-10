@@ -1,37 +1,27 @@
+# AssignMate
+
 # Project Overview
 
-This project is a comprehensive web application developed using Django, aimed at streamlining various functionalities such as email management, web scraping, and seamless integration with external services like Canvas. The application is meticulously organized into multiple apps, each dedicated to a specific feature, promoting modularity and simplifying maintenance. By leveraging Django's robust framework, the project ensures scalability, security, and ease of development, making it an ideal solution for managing complex workflows and integrations.
-## Features
+At UIUC, a problem that many students face is that there is no way they can keep track of all of their assignments on one platform. UIUC uses multiple Learning Management Systems, such as Canvas and PrairieLearn, and that makes it difficult to track when all of our assignments are due. To solve this problem, our group decided to make a website that fetches all assignments from Canvas and PrairieLearn and displays them in two different views: a List View (which shows a List of all upcoming assignments) and a Calendar View (which displays upcoming assignments on a calendar).
 
-- **Email Management**: Automates the process of sending, receiving, and organizing emails, ensuring efficient communication.
-- **Web Scraping**: Utilizes Selenium to extract data from various websites, enabling data collection and analysis.
-- **Canvas Integration**: Seamlessly connects with Canvas LMS to manage courses, assignments, and grades, enhancing the educational experience.
-- **User Authentication**: Implements secure user authentication using OAuth2, providing a safe and user-friendly login experience.
-- **Task Scheduling**: Schedules and automates repetitive tasks, improving productivity and reducing manual effort.
+# Group Members (Team 3)
+- Ryan Lee (rdlee4): Backend Development - Canvas/PrairieLearn integration, database, and integration w/ frontend
+- Vijay Daita (vijayd2): Frontend Development - page design, integration w/ backend
+- Annapoorna Narayan (an77): Backend Development - OAuth, Login, other misc. features
+- Juno Kim (jkim826): Devops/Frontend - Dev Container, GitHub Actions, Test Cases
 
-## Contribution Guidelines
+# Technical Architecture
+Backend:
+- Programming Language: Python
+- Web Server: Django
+- Database: SQLite (stores our assignment data)
+- Webscraping: Selenium WebDriver (Used to scrape PrairieLearn data)
+- Canvas API Access: CanvasAPI (Used to retrieve Canvas assignment data)
 
-We welcome contributions from the community! To contribute:
+Frontend:
+- Markup Language: HTML
+- UI Framework: VueifyJS
 
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix:
-    ```sh
-    git checkout -b feature-name
-    ```
-3. Make your changes and commit them with clear and concise messages.
-4. Push your changes to your forked repository:
-    ```sh
-    git push origin feature-name
-    ```
-5. Open a pull request to the main repository, describing your changes in detail.
-
-## Support
-
-If you encounter any issues or have questions, please open an issue on the GitHub repository. We will do our best to assist you promptly.
-
-## Acknowledgements
-
-We would like to thank all the contributors and the open-source community for their invaluable support and contributions to this project.
 
 ## Requirements
 
