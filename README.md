@@ -14,9 +14,9 @@ At UIUC, a problem that many students face is that there is no way they can keep
 Backend:
 - Programming Language: Python
 - Web Server: Django
-- Database: SQLite
-- Webscraping: Selenium WebDriver
-- Canvas API Access: CanvasAPI
+- Database: SQLite (stores our assignment data)
+- Webscraping: Selenium WebDriver (Used to scrape PrairieLearn data)
+- Canvas API Access: CanvasAPI (Used to retrieve Canvas assignment data)
 
 Frontend:
 - Markup Language: HTML
