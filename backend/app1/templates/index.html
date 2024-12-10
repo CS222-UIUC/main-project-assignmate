@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% load socialaccount %}
     <meta charset="UTF-8">
@@ -12,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
     <title>Assignmate</title>
 </head>
+
 <body>
     <div id="app">
         <v-app>
@@ -32,10 +34,17 @@
                         <div v-if="currentView === 'list'">
                             <v-container>
                                 <v-row>
-                                    <v-col cols="12" sm="6" md="4" v-for="assignment in assignments" :key="assignment.title">
+                                    <v-col cols="12" sm="6" md="4" v-for="assignment in assignments"
+                                        :key="assignment.title">
                                         <v-card>
+
                                             <v-card-title v-text="assignment.title"></v-card-title>
                                             <v-card-text v-text="assignment.description"></v-card-text>
+                                            <vspacer>
+                                                <div class="text-center">Due Date: <v-card-text
+                                                        v-text="assignment.date"></v-card-text></div>
+                                            </vspacer>
+
                                         </v-card>
                                     </v-col>
                                 </v-row>
@@ -43,19 +52,17 @@
                         </div>
                         <!-- Calendar View -->
                         <div v-else-if="currentView === 'calendar'">
-                            <v-calendar
-                                :events="events"
-                            ></v-calendar>
+                            <v-calendar :events="events"></v-calendar>
                         </div>
                     </div>
-                    <form action="/logout" method = "post">
+                    <form action="/logout" method="post">
                         {% csrf_token %}
                         <v-btn type="submit">Logout</v-btn>
                     </form>
                 </v-container>
                 {% else %}
                 <v-container>
-                    <form action="{% provider_login_url 'google' %}" method = "post">
+                    <form action="{% provider_login_url 'google' %}" method="post">
                         {% csrf_token %}
                         <v-btn type="submit">Login with Google</v-btn>
                     </form>
@@ -78,7 +85,7 @@
             loading: false,
             currentView: 'list' // 'list' or 'calendar'
         },
-        mounted(){
+        mounted() {
             this.refreshAssignments();
         },
         methods: {
@@ -108,7 +115,7 @@
                 // Prepare events for the Vuetify calendar
                 this.events = this.assignments.map(assignment => ({
                     name: assignment.title,
-                    start: assignment.date.toISOString().substr(0,10) // format date as 'YYYY-MM-DD'
+                    start: assignment.date.toISOString().substr(0, 10) // format date as 'YYYY-MM-DD'
                 }));
                 console.log(this.events);
                 this.loading = false;
@@ -131,4 +138,5 @@
         }
     });
 </script>
+
 </html>

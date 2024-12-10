@@ -15,8 +15,6 @@ import os
 from dotenv import load_dotenv
 
 
-
-
 # Load environment variables from .env file
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -79,7 +77,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'annapoorna.narayan@gmail.com'  # Your Gmail address
 EMAIL_HOST_PASSWORD = ''  # App-specific password or your Gmail password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 ROOT_URLCONF = "backend.urls"
@@ -156,11 +154,13 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 SITE_ID = 2
 # Access environment variables
-SOCIAL_AUTH_GOOGLE_OAUTH2_ID = os.getenv('GOOGLE_CLIENT_ID', 'default_value_if_not_set')
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('GOOGLE_CLIENT_SECRET', 'default_value_if_not_set')
+SOCIAL_AUTH_GOOGLE_OAUTH2_ID = os.getenv(
+    'GOOGLE_CLIENT_ID', 'default_value_if_not_set')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv(
+    'GOOGLE_CLIENT_SECRET', 'default_value_if_not_set')
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        'SCOPE' : [
+        'SCOPE': [
             'profile',
             'email'
         ],
@@ -169,7 +169,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'secret': SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET,
         },
         'AUTH_PARAMS': {
-            'access_type':'online',
+            'access_type': 'online',
         }
     }
 }
@@ -182,7 +182,7 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 SOCIALACCOUNT_LOGIN_ON_GET = True
 AUTHENTICATION_BACKENDS = (
-    #'social_core.backends.google.GoogleOAuth2',
+    # 'social_core.backends.google.GoogleOAuth2',
     'app1.backends.CustomAuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
