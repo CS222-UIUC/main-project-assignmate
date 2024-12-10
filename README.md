@@ -1,3 +1,22 @@
+# AssignMate
+
+# Group Members
+- Ryan Lee (rdlee4): Backend Development - Canvas/PrairieLearn integration, database, and integration w/ frontend
+- Vijay Daita (vijayd2): Frontend Development - page design, integration w/ backend
+- Annapoorna Narayan (an77): Backend Development - OAuth, Login, other misc. features
+- Juno Kim (jkim826): Devops/Frontend - Dev Container, GitHub Actions, Test Cases
+
+# Technical Architecture
+Backend:
+- Programming Language: Python
+- Web Server: Django
+- Database: SQLite
+- Webscraping: Selenium WebDriver
+- Canvas API Access: CanvasAPI
+Frontend:
+- Markup Language: HTML
+- UI Framework: VueifyJS
+
 # Project Overview
 
 This project is a comprehensive web application developed using Django, aimed at streamlining various functionalities such as email management, web scraping, and seamless integration with external services like Canvas. The application is meticulously organized into multiple apps, each dedicated to a specific feature, promoting modularity and simplifying maintenance. By leveraging Django's robust framework, the project ensures scalability, security, and ease of development, making it an ideal solution for managing complex workflows and integrations.
