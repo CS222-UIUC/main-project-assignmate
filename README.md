@@ -13,6 +13,7 @@ Backend:
 - Database: SQLite
 - Webscraping: Selenium WebDriver
 - Canvas API Access: CanvasAPI
+
 Frontend:
 - Markup Language: HTML
 - UI Framework: VueifyJS
