@@ -1,0 +1,7 @@
+.dockerignore
+
+README.Docker.md
+backend/canvasapp/migrations/__init__.py
+backend/canvasapp/__init__.py
+backend/scraper/migrations/0001_initial.py
+backend/canvasapp/migrations/0001_initial.py
